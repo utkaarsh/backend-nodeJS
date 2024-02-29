@@ -1,15 +1,25 @@
-# "Express JS Tutorial - MVC Example CRUD REST API"
+# Backend Application for user authentication
 
-✅ [Check out my YouTube Channel with all of my tutorials](https://www.youtube.com/DaveGrayTeachesCode).
+To wrap code in existing screen isntead of a single super longf line select the line and type "alt + Z"
 
-**Description:**
+To copy the same line down below press "shift + alt + downArrow"
 
-This repository shares the code applied during the Youtube tutorial. The tutorial is part of a [Node.js & Express for Beginners Playlist](https://www.youtube.com/playlist?list=PL0Zuz27SZ-6PFkIxaJ6Xx_X46avTM1aYw) on my channel.  
+## import installations
 
-[YouTube Tutorial](https://youtu.be/Dco1gzVZKVk) for this repository.
+for JWT- npm i jsonwebtoken
+for Cookie parser -npm i cookie-parser
+for Dot env -npm i dotenv
 
-I suggest completing my [8 hour JavaScript course tutorial video](https://youtu.be/EfAl9bwzVZk) if you are new to Javascript.
+Create ACCESS/Refresh TOKEN using Node
+in terminal type command $node
 
-### Academic Honesty
+it consists of common core model called crypto
+$ require('crypto').randomBytes(64).toString('hex')
 
-**DO NOT COPY FOR AN ASSIGNMENT** - Avoid plagiargism and adhere to the spirit of this [Academic Honesty Policy](https://www.freecodecamp.org/news/academic-honesty-policy/).
+## note
+
+for JWT first thing that we need to pass in the jwt is the payload so we will use username object, you don't wann a pass in anything like password that will hurt your security because it is available to all
+and the second thing that we need is our secret
+and the third thing you will pass is timer object - expiresIn:"time" that will expire after a given timeOut
+
+//30:00
