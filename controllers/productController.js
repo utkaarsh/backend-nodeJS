@@ -11,15 +11,14 @@ const upload = multer({ storage: storage }).single("productImage");
 const createNewProduct = async (req, res) => {
   try {
     const { name, price, quantity, category, status } = req.body;
-    console.log("Image", req);
-    if (Object.keys(req.files).length === 0) {
-      return res.status(400).json({ error: "No file was uploaded. &&" });
-    }
-    const { imageFileName } = req.files;
+    // console.log("Image", req);
+    // if (Object.keys(req.files).length === 0) {
+    //   return res.status(400).json({ error: "No file was uploaded. &&" });
+    // }
+    // const { imageFileName } = req.files;
 
     const newProduct = new Product({
       name,
-      image: imageFileName,
       price,
       category,
       status,
