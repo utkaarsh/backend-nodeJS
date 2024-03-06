@@ -11,10 +11,17 @@ const PORT = process.env.PORT || 3500;
 const mongoose = require("mongoose");
 const connectDB = require("./config/dbConn");
 const fileUpload = require("express-fileupload");
+const cloudinary = require("cloudinary");
 
 //Connect to database
 connectDB();
 // custom middleware logger
+
+cloudinary.v2.config({
+  cloud_name: process.env.CLOUDINARY_API_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 app.use(logger);
 
 app.use(fileUpload());
@@ -54,6 +61,7 @@ app.all("*", (req, res) => {
   }
 });
 
+cloudinary;
 app.use(errorHandler);
 mongoose.connection.once("open", () => {
   console.log("Connected to MongoDB");

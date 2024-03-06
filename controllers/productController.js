@@ -1,16 +1,18 @@
 const Employee = require("../model/Employee");
 const Product = require("../model/Product");
-const multer = require("multer");
-const path = require("path");
-
-const imagesDirectory = path.join(__dirname, "..", "public", "images");
-
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage }).single("productImage");
+const cloudinary = require("cloudinary");
+const getDataUri = require("../utils/dataUri");
 
 const createNewProduct = async (req, res) => {
+  console.log("File", req);
+
   try {
     const { name, price, quantity, category, status } = req.body;
+    const file = req.files;
+
+    // const fileUri = getDataUri(file);
+    // const myCloud = await cloudinary.v2.uploader.upload(fileUri.content);
+
     // console.log("Image", req);
     // if (Object.keys(req.files).length === 0) {
     //   return res.status(400).json({ error: "No file was uploaded. &&" });
@@ -23,6 +25,10 @@ const createNewProduct = async (req, res) => {
       category,
       status,
       quantity,
+      // poster: {
+      //   public_id: myCloud.public_id,
+      //   url: myCloud.url,
+      // },
     });
 
     await newProduct.save();
@@ -31,6 +37,8 @@ const createNewProduct = async (req, res) => {
     console.log("Product created successfully");
   } catch (error) {
     console.error(error);
+    console.log("File URI", req);
+
     res.status(500).json({ message: "There is an Internal Server Error bro" });
   }
 };
@@ -111,5 +119,4 @@ module.exports = {
   deleteEmployee,
   getEmployee,
   createNewProduct,
-  upload,
 };
